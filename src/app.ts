@@ -2,6 +2,7 @@ import mongoose from "./database";
 import router from "./router/router";
 import dotenv from "dotenv";
 import express from "express";
+import "express-async-errors";
 
 class App {
   public express: express.Application;

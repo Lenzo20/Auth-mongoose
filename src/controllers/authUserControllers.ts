@@ -48,7 +48,6 @@ class authUserControllers {
       token: token
     });
 
-
   }
 
   public async getProfile(req: Request, res: Response) {
