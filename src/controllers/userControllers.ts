@@ -1,3 +1,4 @@
+import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 
 import { User } from "../model/User";
@@ -13,7 +14,7 @@ class userControllers {
     try {
       let { username, email, password } = req.body;
 
-      const erros: Array<object> = []
+      const erros: Array<object> = [];
 
       if (!username)
         erros.push({ error: "Username is required" });
@@ -36,7 +37,13 @@ class userControllers {
       if (await User.findOne({ email }))
         return res.json({ message: "email is already existents" });
 
-      const users = await User.create({ username, email, password });
+      const hashPassword = await bcrypt.hash(password, 10);
+
+      const users = await User.create({
+        username,
+        email,
+        password: hashPassword
+      });
 
       return res.status(201).json(users);
     } catch (err) {
@@ -49,7 +56,7 @@ class userControllers {
       const { username, email, password } = req.body;
       const { id } = req.params;
 
-      const users = await User.findOne({ id });
+      const users = await User.findOne({ _id: id });
 
       if (!users)
         return res.status(400).json({ error: "User not found" });
@@ -75,10 +82,10 @@ class userControllers {
     try {
       const id = req.params.id;
 
-      if (!await User.findOne({ id }))
+      if (!await User.findOne({ _id: id }))
         return res.status(400).json({ error: "User not found" });
 
-      await User.deleteOne({ id });
+      await User.deleteOne({ _id: id });
 
       return res.status(200).json({ sucess: "User deleted" });
     } catch (err) {
