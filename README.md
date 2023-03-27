@@ -16,13 +16,13 @@
 
 ### Router
 
-router.get("/users", userControllers.find); <!-- view all registered users -->
-router.post("/users", userControllers.find); <!-- register user -->
-router.patch("/users", userControllers.find); <!-- uptade user -->
-router.delete("/users", userControllers.find); <!-- delete user -->
-router.post("/auth/users", userControllers.find); <!-- login user -->
+- router.get("/users", userControllers.find); <!-- view all registered users -->
+- router.post("/users", userControllers.find); <!-- register user -->
+- router.patch("/users", userControllers.find); <!-- uptade user -->
+- router.delete("/users", userControllers.find); <!-- delete user -->
+- router.post("/auth/users", userControllers.find); <!-- login user -->
 
-router.get("/auth/users", userControllers.find);
+- router.get("/auth/users", userControllers.find);
 
 - router to authenticate token, here you need to pass token as headers good format "Bearer token"
 
