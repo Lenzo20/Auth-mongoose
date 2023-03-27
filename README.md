@@ -27,3 +27,5 @@
 > router to authenticate token, here you need to pass token as headers good format "Bearer token"
 
 >> ex: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjFlM2RhYTdlMjE0NGViNWE4NjdiMSIsIm5hbWUiOiJMZW56byIsImlhdCI6MTY3OTk0MjYzNSwiZXhwIjoxNjc5OTcxNDM1fQ.WH5DOiH5wCSrOBPWYtQYrZuffGu9LdSMHyv4"
+
+- Em breve novas funcionalidades, como acesso de admnistrador e testes para area de desenvolvimento
