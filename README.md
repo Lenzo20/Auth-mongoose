@@ -4,7 +4,7 @@
 
 ### Use para iniciar o servidor
 
-- yarn start
+- yarn start 
 
 ### Here we use the following languages and framework
 
@@ -24,6 +24,6 @@
 
 - router.get("/auth/users", userControllers.find);
 
-- router to authenticate token, here you need to pass token as headers good format "Bearer token"
+> router to authenticate token, here you need to pass token as headers good format "Bearer token"
 
-<!-- ex: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjFlM2RhYTdlMjE0NGViNWE4NjdiMSIsIm5hbWUiOiJMZW56byIsImlhdCI6MTY3OTk0MjYzNSwiZXhwIjoxNjc5OTcxNDM1fQ.WH5DOiH5wCSrOBPWYtQYrZuffGu9LdSMHyv4" -->
+>> ex: "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0MjFlM2RhYTdlMjE0NGViNWE4NjdiMSIsIm5hbWUiOiJMZW56byIsImlhdCI6MTY3OTk0MjYzNSwiZXhwIjoxNjc5OTcxNDM1fQ.WH5DOiH5wCSrOBPWYtQYrZuffGu9LdSMHyv4"
