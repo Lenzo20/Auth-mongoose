@@ -31,7 +31,7 @@ class authUserControllers {
     if (!await bcrypt.compare(password, users.password))
       return res.status(400).json({ error: "Password incorrect" });
 
-
+    // created token
     const token: string = jwt.sign({
       id: `${users._id}`,
       name: `${users.username}`,
@@ -50,6 +50,7 @@ class authUserControllers {
 
   }
 
+  // logado
   public async getProfile(req: Request, res: Response) {
     return res.json(req.user);
   }

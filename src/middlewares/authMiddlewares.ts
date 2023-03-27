@@ -7,6 +7,7 @@ type jwtPayload = {
   id: string;
 }
 
+//  Autenticaçãoo do token
 export const authMiddlewares = async (
   req: Request,
   res: Response,
