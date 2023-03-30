@@ -1,8 +1,10 @@
 import bcrypt from "bcrypt";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { Request, Response } from "express";
+import { NotFoundError } from "../helpers/apiError";
 import { User } from "../model/User";
+import { BadRequestError } from './../helpers/apiError';
 
 type jwtPayload = {
   id: string;
@@ -12,16 +14,8 @@ class authUserControllers {
   public async authUser(req: Request, res: Response) {
     const { email, password } = req.body;
 
-    const erros: Array<object> = []
-
-    if (!email)
-      erros.push({ error: "Username is required" });
-
-    if (!password)
-      erros.push({ error: "Password is required" });
-
-    if (erros.length > 1)
-      return res.status(400).json(erros);
+    if (!email || !password)
+      throw new BadRequestError("Email or password is invalid");
 
     const users = await User.findOne({ email });
 
@@ -39,21 +33,17 @@ class authUserControllers {
       process.env.SECRET_KEY ?? " ",
       { expiresIn: "8h" });
 
-    ({
-      users: {
-        id: `${users._id}`,
-        name: `${users.username}`,
-        email: `${users.email}`
-      },
-      token: token
-    });
-
+    // Vai retornan ainda, to resolvendo ao bagulho de redirecionar, pq aqui ele cria
+    // o token e loga, depois tem que redirecionar, provavelmente eu retorne o token
+    // Não sei, ou retorno so os valores do usuario mesmo
   }
 
   // logado
   public async getProfile(req: Request, res: Response) {
+    // Aqui ele pega os valores do usuario, quando faz a verificação
+    // do token ele retorna o dados do usuario
     return res.json(req.user);
   }
 }
 
-export default new authUserControllers();
+export default authUserControllers;

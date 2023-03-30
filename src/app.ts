@@ -1,14 +1,14 @@
-import mongoose from "./database";
-import router from "./router/router";
 import dotenv from "dotenv";
 import express from "express";
-import "express-async-errors";
+
+import mongoose from "./database";
+import router from "./router/router";
 
 class App {
-  public express: express.Application;
+  public app: express.Application;
 
   constructor() {
-    this.express = express();
+    this.app = express();
 
     this.middlewares();
     this.database();
@@ -16,7 +16,7 @@ class App {
   }
 
   private middlewares(): void {
-    this.express.use(express.json());
+    this.app.use(express.json());
     dotenv.config();
   }
 
@@ -25,8 +25,8 @@ class App {
   }
 
   private router(): void {
-    this.express.use(router);
+    this.app.use(router);
   }
 }
 
-export default new App().express;
+export default new App().app;

@@ -1,26 +1,27 @@
-import { authMiddlewares } from './../middlewares/authMiddlewares';
 import { Router } from "express";
 
 import authUserControllers from "../controllers/authUserControllers";
 import userControllers from "../controllers/userControllers";
+import { ApiError, NotFoundError } from './../helpers/apiError';
+import { authMiddlewares } from './../middlewares/authMiddlewares';
 
 const router = Router();
 
 router.get("/test", (req, res) => {
-  return res.status(200).json({ ok: true });
+  throw new NotFoundError("Caiu na api de test");
 })
 
-router.get("/users", userControllers.find);
-router.post("/users", userControllers.create);
-router.patch("/users/:id", userControllers.uptade);
-router.delete("/users/:id", userControllers.delete);
+router.get("/users", new userControllers().find);
+router.post("/users", new userControllers().create);
+router.patch("/users/:id", new userControllers().uptade);
+router.delete("/users/:id", new userControllers().delete);
 
 // Login
-router.post("/auth/users", authUserControllers.authUser);
+router.post("/auth/users", new authUserControllers().authUser);
 
 router.use(authMiddlewares)
 
 // Logado
-router.get("/auth/users", authUserControllers.getProfile);
+router.get("/auth/users", new authUserControllers().getProfile); // em test tratamento de erro
 
 export default router;
