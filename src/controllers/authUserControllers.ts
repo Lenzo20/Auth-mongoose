@@ -2,7 +2,6 @@ import bcrypt from "bcrypt";
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 
-import { NotFoundError } from "../helpers/apiError";
 import { User } from "../model/User";
 import { BadRequestError } from './../helpers/apiError';
 
@@ -33,9 +32,7 @@ class authUserControllers {
       process.env.SECRET_KEY ?? " ",
       { expiresIn: "8h" });
 
-    // Vai retornan ainda, to resolvendo ao bagulho de redirecionar, pq aqui ele cria
-    // o token e loga, depois tem que redirecionar, provavelmente eu retorne o token
-    // Não sei, ou retorno so os valores do usuario mesmo
+    return res.status(200).json({ users, token })
   }
 
   // logado
